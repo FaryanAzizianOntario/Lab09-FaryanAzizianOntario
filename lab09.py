@@ -9,27 +9,61 @@
 
 
 def two_sum(nums, target):
-    # Outline (write your plan here first):
-    #   ...
-    # TODO: return the indices [i, j] (i < j) of the two numbers in `nums` that add up
-    #   to `target`. Assume there is exactly one answer.
-    pass
+    f = 0
+    for i in nums:
+        k = -1
+        for j in nums:
+            k += 1
+            if f == k:
+                continue
+            if i + j == target:
+                return [f, k]
+        f += 1
 
 
 def max_profit(prices):
-    # Outline:
-    #   ...
-    # TODO: `prices[i]` is a stock price on day i. Return the most profit obtainable by
-    #   buying on one day and selling on a LATER day. If no profit is possible, return 0.
-    pass
+    profit = 0
+    for i in prices:
+        for j in prices:
+            temProfit = j - i
+            if temProfit > profit:
+                profit = temProfit
+                print(i, j)
+        prices = prices[1::]
+    return profit
 
 
 def max_subarray(nums):
-    # Outline:
-    #   ...
-    # TODO: return the largest sum of any contiguous (in-a-row) block of numbers in
-    #   `nums`. The list has at least one number.
-    pass
+    maxSum = 0
+    subArrLen = len(nums)
+    i = 1
+    k = 0
+
+    for z in nums:
+        maxSum += z
+
+    while(k < subArrLen):
+        tempSum = 0
+
+        for j in nums[k:i]:
+            tempSum += j
+        
+        if maxSum < tempSum:
+            maxSum = tempSum
+            
+        if i == subArrLen:
+            k += 1
+            i = 0
+
+            while(i < k):
+                i += 1
+
+        i += 1
+
+        if i == k and i + 1 != subArrLen:
+            i += 1
+
+    return maxSum
 
 
 def is_balanced(s):   # Part 4 - stretch (optional)
@@ -42,7 +76,9 @@ def is_balanced(s):   # Part 4 - stretch (optional)
 
 def main():
     # Optional scratch space - try your functions here, then run: python lab09.py
-    # print(two_sum([2, 7, 11, 15], 9))   # [0, 1]
+    #print(two_sum([3, 3], 6))   # [0, 1]
+    #print(max_profit([7, 1, 5, 3, 6, 4]))   #5
+    #print(max_subarray([-1, -2, -3]))   #-1
     pass
 
 

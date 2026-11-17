@@ -65,20 +65,29 @@ def max_subarray(nums):
 
     return maxSum
 
+def is_balanced(s):
+    pairs = {')' : '(', ']' : '[', '}' : '{'}
+    oppened = []
 
-def is_balanced(s):   # Part 4 - stretch (optional)
-    # Outline:
-    #   ...
-    # TODO: return True if every bracket in `s` is closed correctly and in the right
-    #   order. The brackets are ( ) [ ] { }. (Hint: a list used as a stack works well.)
-    pass
+    for i in s:
+        if i in pairs.values():
+            oppened.append(i)
+        elif i in pairs:
+            if not oppened:
+                return False
+            if oppened.pop() != pairs[i]:
+                return False
 
+
+    return not oppened
 
 def main():
     # Optional scratch space - try your functions here, then run: python lab09.py
     #print(two_sum([3, 3], 6))   # [0, 1]
     #print(max_profit([7, 1, 5, 3, 6, 4]))   #5
     #print(max_subarray([-1, -2, -3]))   #-1
+    #print(is_balanced("([]{})"))
+    #print(doesClose("()"))
     pass
 
 
